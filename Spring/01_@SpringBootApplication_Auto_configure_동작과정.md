@@ -130,6 +130,7 @@ External Libraries 패키지 내부를 보면 방금 본 Auto Connfigure를 위�
 예시로 Redis 관련 Configure를 살펴보겠다.
 
 ![image](https://github.com/jdi022222/TIL/assets/97517890/518be68e-c64e-4bbc-ad13-efd1f91b52d1)
+
 ![image](https://github.com/jdi022222/TIL/assets/97517890/df85099e-b77f-4c19-ac9b-fe8a8e42e41e)
 
 @Bean이 붙은 클래스가 3가지 있으며 Redis의 AutoConfiguration이 import될 때 해당 Bean들이 자동으로 등록된다.
