@@ -4,7 +4,7 @@
 
 ### Spring
 * [Inner Working]()
-    * [@AutoConfiguration](Spring/01_@SpringBootApplication_Auto_configure_동작과정.md)
+    * [@SpringBootApplication](Spring/01_@SpringBootApplication_Auto_configure_동작과정.md)
 
 ### CS
 * OS
