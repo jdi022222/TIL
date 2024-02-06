@@ -1,14 +1,12 @@
-# 01 @SpringBootApplication, Auto configure 동작 과정
+# @SpringBootApplication
 
 > @SpringBootApplication이 담당하는 기능과 Spring Boot가 제공하는 AutoConfiguration의 내부 동작을 정리한 글입니다.
 
 ## Spring Boot와 자동 환경 설정
 
-Spring은 설정에 대한 과정이 복잡하다.
+Spring은 설정에 대한 과정이 복잡하다.  이를 해결하기 위해 Spring Boot에서는 `AutoConfigure`를 통해 자동 환경 설정을 제공한다. `AutoConfigure`는 spring-boot-starter의 하위 모듈이다.
 
-이를 해결하기 위해 Spring Boot에서는 `AutoConfigure`를 통해 자동 환경 설정을 제공한다.
 
-`AutoConfigure`는 spring-boot-starter의 하위 모듈이다.
 
 만약 프로젝트에 Redis를 연결하고 싶다면
 
@@ -16,13 +14,15 @@ Spring은 설정에 대한 과정이 복잡하다.
 implementation'org.springframework.boot:spring-boot-starter-data-redis'
 ```
 
-위와 같은 의존성을 추가하게 되고 바로 Redis의 RedisTemplate 등등을 이용할 수 있다.
+위와 같은 의존성을 추가하게 되고 바로 Redis의 RedisTemplate 등등을 이용할 수 있다. 이 뿐만 아니라 Spring Data JPA를 사용한다면 Transaction Manager, datasource와 같은 빈도 자동으로 생성된다.&#x20;
 
-이 뿐만 아니라, Transaction Manager, datasource와 같은 빈도 자동으로 생성된다.
 
-Spring Boot가 아닌 Spring을 이용했다면 해당 빈들을 개발자가 직접 Configuraion에 빈들을 정의해줘야한다. 
 
-이런 간편할 설정이 어떻게 가능한지 Spring Boot 애플리케이션의 실행을 살펴보았다.
+Spring Boot가 아닌 Spring을 이용했다면 해당 빈들을 개발자가 직접 Configuraion에 빈들을 정의해줘야한다. 이런 간편할 설정이 어떻게 가능한지 Spring Boot 애플리케이션의 실행을 살펴보았다.
+
+
+
+
 
 ## @SpringBootApplication
 
@@ -50,11 +50,11 @@ Spring Boot는 Root Class에 @SpringBootApplication 어노테이션을 이용해
 
 1. @ComponentScan : @Component와 이를 상속한 @Controller, @Service, @Repository 등을 Bean으로 등록한다.
 2. @EnableAutoConfiguration : 자동 설정 및 구성을 담당한다. 메타 파일에 정의된 설정들을 필터링하고 자동으로 구성하는 역할을 한다.
-3. @SpringBootConfiguration : 컨텍스트나 추가 설정에 대한 import를 진행한다. @Configuration와 동일한 효과를 가진다. @Configuration과 다르게 오직 한 개만 선언
-   가능하다.
+3. @SpringBootConfiguration : 컨텍스트나 추가 설정에 대한 import를 진행한다. @Configuration와 동일한 효과를 가진다. @Configuration과 다르게 오직 한 개만 선언 가능하다.
 
-여기서 DataSource나 TransactionManager, RedisTemplate등 빈들을 자동으로 등록해주고 Application 구동을 위한 설정의 책임을 가진 것이
-`@EnableAutoConfiguration`이다.
+여기서 DataSource나 TransactionManager, RedisTemplate등 빈들을 자동으로 등록해주고 Application 구동을 위한 설정의 책임을 가진 것이 `@EnableAutoConfiguration`이다.
+
+
 
 ## @EnableAutoConfiguration
 
@@ -64,6 +64,8 @@ Spring Boot는 Root Class에 @SpringBootApplication 어노테이션을 이용해
 2. @Import(AutoConfigurationImportSelector.class) : Import 할 자동 설정 정보들 관리하는 클래스(AutoConfigurationImportSelector)를 이용한다.
 
 AutoConfigurationImportSelector의 내부 동작을 통해 초기 설정, 빈 주입에 대한 부분이 진행된다.
+
+
 
 ## AutoConfigurationImportSelector.class
 
@@ -90,6 +92,8 @@ AutoConfigurationImportSelector는 자동 설정 관련 클래스들을 가져�
 ```
 
 중요 동작 흐름을 하나씩 살펴보겠다.
+
+
 
 ### 1. getCandidateConfigurations를 통해 import할 클래스 목록 조회
 
@@ -135,6 +139,8 @@ External Libraries 패키지 내부를 보면 방금 본 Auto Connfigure를 위�
 
 @Bean이 붙은 클래스가 3가지 있으며 Redis의 AutoConfiguration이 import될 때 해당 Bean들이 자동으로 등록된다.
 
+
+
 ```java
 @Bean
 @ConditionalOnMissingBean(name = "redisTemplate")
@@ -148,6 +154,8 @@ public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisC
 
 @ConditionalOnMissingBean(name = "redisTemplate") 처럼 이미 redisTemplate이라는 Bean이 등록이 됐다면 (@ComponentScan 시점에 등록) 해당 Bean은 자동 등록되지 않는다.
 
+
+
 ### 2. getExclusions를 통해 필터링할 후보들 선정
 
 제외할 클래스 목록을 가져오기 위해 getExclusions 메서드를 호출한다.
@@ -156,24 +164,17 @@ getExclusions 메서드는 EnableAutoConfiguration 어노테이션의 exclude, e
 
 제외할 클래스 목록에 포함된 클래스가 후보 구성 목록에 있는지 확인하고, 있는 경우 해당 클래스를 후보 목록에서 제외한다.
 
+> AnnotationMetadata를 사용하여 특정 클래스에 EnableAutoConfiguration 속성을 확인하고 자동으로 빈을 등록하거나 설정을 적용할지 여부를 결정할 수 있다. 만약, 후보 클래스 중에 이미 Component Scan을 통해 생성된 빈이 존재한다면 해당 후보 클래스를 제외해야한다.
 
-> AnnotationMetadata를 사용하여 특정 클래스에 EnableAutoConfiguration 속성을 확인하고
-> 자동으로 빈을 등록하거나 설정을 적용할지 여부를 결정할 수 있다. 
-> 만약, 후보 클래스 중에 이미 Component Scan을 통해 생성된 빈이 존재한다면 해당 후보 클래스를 제외해야한다.
+
 
 ### 3. 자동 구성된 Entry 반환
 
 AutoConfigure를 통해 필터링된 빈들이 반환되고 해당 빈들이 빈 컨테이너에 등록되게 된다.
 
-따라서 DataSource나 RedisTemplate<Object, Object>를 빈으로 등록하지 않아도 Spring Boot가 등록해준 빈을 사용할 수 있다.
+따라서 DataSource나 RedisTemplate\<Object, Object>를 빈으로 등록하지 않아도 Spring Boot가 등록해준 빈을 사용할 수 있다.
 
 
 
-
-
-
-
-
-
-
+> 주의할 점은 RedisTemplate\<Object, Object>만 빈으로 정의되어 있다는 점이다. 만약 제네릭 타입을 String으로 변경하거나 직렬화 방식을 변경하고 싶다면 AutoConfiguration이 만든 빈을 사용하지 않고 개발자가 직접 Configuration에 빈을 등록해야한다.
 
