@@ -91,6 +91,38 @@ Web.xml의 설정을 기반으로 빈을 등록하는 WebApplication의 구현�
 
 ### 어떤 것이 사용될까?
 
+@SpringBootApplication 어노테이션이 붙은 root 클래스에서 `SpringApplication.run();`을 할 때 해당 애플리케이션의 타입에 따라 사용되는 ApplicationContext가 다르다.
+
+
+
+ApplicationType은 크게 세 가지가 Enum으로 제공된다.
+
+```
+/**
+ * The application should not run as a web application and should not start an
+ * embedded web server.
+ */
+NONE,
+
+/**
+ * The application should run as a servlet-based web application and should start an
+ * embedded servlet web server.
+ */
+SERVLET,
+
+/**
+ * The application should run as a reactive web application and should start an
+ * embedded reactive web server.
+ */
+REACTIVE;
+```
+
+
+
+ClassLoader를 통해 클래스 목록을 확인하여 해당 애플리케이션의 타입을 할당하고 적절한 ApplicationContext 구현체를 사용한다.
+
+<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
 일반적인 Spring Boot Web 어플리케이션은 `AnnotationConfigServletWebServerApplicationContext`을 이용하게 된다.&#x20;
 
 
@@ -113,23 +145,23 @@ Web.xml의 설정을 기반으로 빈을 등록하는 WebApplication의 구현�
 
 
 
-## DispatcherServlet과의 관계 - 추가 필요
+## DispatcherServlet과의 관계
 
 그렇다면 웹 애플리케이션을 만들 때 ApplicationContext가 어떻게 사용될까?
 
 
 
-웹 애플리케이션에서 사용되는 ApplicationContext 구현체인 `WebApplicationContext`가 `DispatcherServlet`과 함께 사용된다.
+웹 애플리케이션에서 사용되는 ApplicationContext를 상속한 인터페이스인 `WebApplicationContext`가 `DispatcherServlet`과 함께 사용된다.
 
 <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption><p>DispatcherServlet이 생성될 때 WebApplicationContext를 파라미터로 받는 생성자</p></figcaption></figure>
 
 
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>WebApplicationContext는 ApplicationContext의 구현체 중 하나이다.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>WebApplicationContext는 ApplicationContext를 상속받은 인터페이스 중 하나이다.</p></figcaption></figure>
 
 
 
-DispatcherServlet은 Spring MVC가 웹 요청을 처리할 때 사용되는 핵심 컴포넌트다. DispatcherServlet은 내부적으로 WebApplicationContext를 사용해 빈을 관리한다. ~~관련된 내용은 더 공부해서 다음 글에 이어서 작성하겠다.~~
+DispatcherServlet은 Spring MVC가 웹 요청을 처리할 때 사용되는 핵심 컴포넌트다. DispatcherServlet은 내부적으로 WebApplicationContext의 구현체를 사용해 빈을 관리한다. ~~관련된 내용은 더 공부해서 다음 글에 이어서 작성하겠다.~~
 
 
 
