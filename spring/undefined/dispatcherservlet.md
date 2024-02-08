@@ -27,7 +27,7 @@ Servlet부터 DispatcherServlet까지의 내부 구조와 흐름에 대해 정�
 
 참고 : [https://www.baeldung.com/intro-to-servlets](https://www.baeldung.com/intro-to-servlets)
 
-* 서블릿은 요청을 처리하고 응답으로 응답하는 인터페이스
+* 웹페이지를 동적으로 생성하며  외부 요청을 처리하고 응답하기 위한 인터페이스
 * 서블릿 덕분에 HTTP 요청 뿐만 아니라 다양한 유형의 요청을 동적으로 처리하여 응답 가능
 * 해당 인터페이스에는 init(), service(), destroy()와 같이 서블릿의 생명주기 및 처리에 대한 추상 메서드가 정의되어 있다.
 * 서블릿의 생명주기는 `init() → service() → destroy()`이다.
