@@ -4,10 +4,10 @@
 
 ## 🌱 Spring
 
-* [내부동작](spring/undefined/README.md)
-  * [@SpringBootApplication](spring/undefined/01\_-springbootapplication\_auto\_configure\_.md)
-  * [ApplicationContext](spring/undefined/applicationcontext.md)
-  * [DispatcherServlet](spring/undefined/dispatcherservlet.md)
+* [Internal Working](spring/internal-working/README.md)
+  * [@SpringBootApplication](spring/internal-working/01\_-springbootapplication\_auto\_configure\_.md)
+  * [ApplicationContext](spring/internal-working/applicationcontext.md)
+  * [DispatcherServlet](spring/internal-working/dispatcherservlet.md)
 * [Issue](spring/issue/README.md)
   * [SSE + Stream 방식 문제점](spring/issue/sse-+-stream.md)
 
