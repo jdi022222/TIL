@@ -40,13 +40,13 @@ SSE로 정했으니 바로 개발에 들어갔다.
 
 우선 외부 API를 Stream 방식으로 받아와야 한다. 다행히도 chatGPT는 stream옵션을 이용하면 간편하게 stream 형식으로 받아올 수 있었다.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 
 
 그리고 Webflux의 Flux를 이용해 Stream을 처리했다.  Stream으로 여러 데이터를 emit해야하기 때문에 Mono가 아닌 Flux 타입으로 반환을 했다.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 개발 후 로컬에서 테스트는 잘 동작했으나 배포환경에서는 몇가지 문제가 발생했다.
 
@@ -62,7 +62,7 @@ ChatGPT를 통해 결과 생성 요청을 10개정도 연속으로 보내 보았
 
 로그를 확인해보니 커넥션풀이 터지는 문제가 발생했다.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
