@@ -2,7 +2,7 @@
 
 > @SpringBootApplication이 담당하는 기능과 Spring Boot가 제공하는 AutoConfiguration의 내부 동작을 정리한 글입니다.
 
-## Spring Boot와 자동 환경 설정
+## ⚙️ Spring Boot와 자동 환경 설정
 
 Spring은 설정에 대한 과정이 복잡하다.  이를 해결하기 위해 Spring Boot에서는 `AutoConfigure`를 통해 자동 환경 설정을 제공한다. `AutoConfigure`는 spring-boot-starter의 하위 모듈이다.
 
@@ -24,7 +24,7 @@ Spring Boot가 아닌 Spring을 이용했다면 해당 빈들을 개발자가 �
 
 
 
-## @SpringBootApplication
+## 1️⃣ @SpringBootApplication
 
 ```java
 
@@ -56,7 +56,7 @@ Spring Boot는 Root Class에 @SpringBootApplication 어노테이션을 이용해
 
 
 
-## @EnableAutoConfiguration
+## 2️⃣ @EnableAutoConfiguration
 
 ![image](https://github.com/jdi022222/TIL/assets/97517890/9dba61bb-eef4-4098-8527-22e3c54e3095)
 
@@ -67,7 +67,7 @@ AutoConfigurationImportSelector의 내부 동작을 통해 초기 설정, 빈 �
 
 
 
-## AutoConfigurationImportSelector.class
+## 3️⃣ AutoConfigurationImportSelector.class
 
 AutoConfigurationImportSelector는 자동 설정 관련 클래스들을 가져오고 필터링을 하는 클래스다.
 

@@ -8,9 +8,11 @@
   * [@SpringBootApplication](spring/internal-working/01\_-springbootapplication\_auto\_configure\_.md)
   * [ApplicationContext](spring/internal-working/applicationcontext.md)
   * [DispatcherServlet](spring/internal-working/dispatcherservlet.md)
-* [Issue](spring/issue/README.md)
-  * [SSE + Stream 방식 문제점](spring/issue/sse-+-stream.md)
-  * [Caffeine Cache 적용기](spring/issue/caffeine-cache.md)
+  * [Spring AOP](spring/internal-working/spring-aop.md)
+  * [Spring with GoF](spring/internal-working/spring-with-gof.md)
+* [Technical Issue](spring/technical-issue/README.md)
+  * [SSE + Stream 방식 문제점](spring/technical-issue/sse-+-stream.md)
+  * [Caffeine Cache 적용기](spring/technical-issue/caffeine-cache.md)
 
 ## 💻 CS
 

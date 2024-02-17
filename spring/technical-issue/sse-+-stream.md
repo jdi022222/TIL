@@ -2,7 +2,7 @@
 
 > 멈무일기 프로젝트에 SSE + Stream 방식을 사용하게 되면서 발생한 문제와 해결 과정을 정리한 글입니다.
 
-&#x20;
+## ✅ 개발 완료 모습
 
 <figure><img src="../../.gitbook/assets/멈무일기 stream (1).gif" alt=""><figcaption></figcaption></figure>
 
@@ -16,7 +16,7 @@
 
 
 
-## SSE + Stream방식 이용
+## 💻 SSE + Stream방식 이용
 
 단발성 응답이 아닌, 클라이언트와 연결을 유지한 채 계속해서 데이터를 전달하는 방식은 Polling과 Long Polling이 있다. Long polling은 응답마다 다시 요청해야하기 때문에 Stream 방식에는 어울리지 않다고 판단했다.
 
@@ -34,7 +34,7 @@ SSE를 이용해 한 번 요청을 하면 커넥션이 종료될 때까지 서�
 
 
 
-## 개발 과정
+## 🚀 개발 과정
 
 SSE로 정했으니 바로 개발에 들어갔다.
 
@@ -52,7 +52,7 @@ SSE로 정했으니 바로 개발에 들어갔다.
 
 
 
-## ISSUE 1 - DB connection pool
+## 1️⃣ ISSUE 1 - DB connection pool
 
 개발 서버에 배포 후 프론트에서 테스트를 진행했다.
 
@@ -86,7 +86,7 @@ Jmeter를 통해 부하테스트를 진행해봤다.&#x20;
 
 
 
-## ISSUE 2 - Nginx proxy buffering setting
+## 2️⃣ ISSUE 2 - Nginx proxy buffering setting
 
 로컬에서 테스트 했을 때는 문제 없었지만 온프레미스 서버에 배포 후에 stream 데이터가 한 글자씩 반환되지 않고 덩어리로 가는 문제가 발생했다.
 

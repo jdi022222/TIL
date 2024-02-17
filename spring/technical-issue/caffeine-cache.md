@@ -2,7 +2,7 @@
 
 > Spring Boot 프로젝트에 Caffeine Cache를 적용해보는 글입니다.
 
-## Cache
+## ？ Cache란
 
 **캐시란?**
 
@@ -31,7 +31,7 @@ Spring Boot는 **`Spring-Boot-Starter-Cache`** 의존성을 통해 간편하게 
 
 
 
-## Caffeine Cache를 선택한 이유
+## ☕️ Caffeine Cache를 선택한 이유
 
 * Ehcache, 단순 ConcurrentHashMap보다 월등한 성능 [링크](https://github.com/ben-manes/caffeine/wiki/Benchmarks)
 * Caffeine은 spring-boot-starter-cache 에 auto-configured 되어 있음 [링크](https://github.com/spring-projects/spring-boot/blob/v3.2.2/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/cache/CaffeineCacheConfiguration.java)
@@ -45,7 +45,7 @@ Spring Boot는 **`Spring-Boot-Starter-Cache`** 의존성을 통해 간편하게 
 
 
 
-## Caffeine Cache 사용 방법
+## 👋 Caffeine Cache 사용 방법
 
 프로젝트에 적용하는 방법은 잘 설명된 레퍼런스가 많이 때문에 아주아주 간단하게 적었다.
 
@@ -147,7 +147,7 @@ public NoticeResponses findNotices() {
 
 
 
-## 적용 1 : 공지사항 데이터
+## 1️⃣ 적용 1 : 공지사항 데이터
 
 우선 공지사항에 캐시를 적용해보았다.
 
@@ -198,7 +198,7 @@ public NoticeResponses findNotices() {
 
 
 
-## 적용 2 : 가이드 리스트 데이터
+## 2️⃣ 적용 2 : 가이드 리스트 데이터
 
 프로젝트에서 제공하는 chatGPT 가이드 리스트 기능은 JWT 토큰 인증 과정이 추가된다.
 
@@ -268,7 +268,7 @@ public static void beforeProcess() {
 
 
 
-## 결론
+## 🎬 결론
 
 > 캐시를 적용할 데이터의 특성과 트레이드 오프를 따져가며 캐시의 적용 여부를 결정하자!\
 > 만약, 캐시를 적용할지 말지 고민된다면 부하테스트와 모니터링을 통해 캐시 적용 전후 차이에 대해 확인해보자!

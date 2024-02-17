@@ -2,7 +2,7 @@
 
 > IOC 컨테이너, ApplicationContext에 대해 정리한 글입니다.
 
-## Spring과 IOC 컨테이너
+## 💻 Spring과 IOC 컨테이너
 
 객체지향적으로 코딩하다보면 객체간의 의존성이 커지는 문제를 마주하게 된다. 어느 한 객체가 다른 객체의 생성을 담당하거나 한 객체의 수정사항이 다른 객체에 영향을 줄 경우 의존성이 발생한다. 이로 인해 각 객체간 결합도가 높아지고 유지보수성이 떨어지는 문제가 생길 수 있다.
 
@@ -25,7 +25,7 @@ Spring framework에서는 개발자가 직접 객체를 생성하지 않고 컨�
 \
 
 
-## ApplicationContext 상속 구조
+## 🌲 ApplicationContext 상속 구조
 
 <figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext인터페이스의 구조</p></figcaption></figure>
 
@@ -53,7 +53,7 @@ BeanFactory는 Bean의 라이프사이클을 관리하는 기능만 있다면, A
 
 
 
-## ApplicationContext의 구현체
+## 🏠 ApplicationContext의 구현체
 
 그럼, ApplicationContext의 구현체들을 살펴보자.
 
@@ -129,7 +129,7 @@ ClassLoader를 통해 클래스 목록을 확인하여 해당 애플리케이션
 
 
 
-## ApplicationContext 동작 과정
+## 🏋️ ApplicationContext 동작 과정
 
 1. XML or 어노테이션 기반으로 설정 파일 로드 후 Bean 생성
 2. Bean간의 의존성 주입
@@ -145,7 +145,7 @@ ClassLoader를 통해 클래스 목록을 확인하여 해당 애플리케이션
 
 
 
-## DispatcherServlet과의 관계
+## 👩‍❤️‍👨 DispatcherServlet과의 관계
 
 그렇다면 웹 애플리케이션을 만들 때 ApplicationContext가 어떻게 사용될까?
 
@@ -165,7 +165,7 @@ DispatcherServlet은 Spring MVC가 웹 요청을 처리할 때 사용되는 핵�
 
 
 
-## 실습 - 컨테이너가 관리하는 모든 Bean 조회
+## 🚀 실습 - 컨테이너가 관리하는 모든 Bean 조회
 
 참고 : [https://www.youtube.com/watch?v=qEzRBmw6YlI](https://www.youtube.com/watch?v=qEzRBmw6YlI)
 

@@ -2,7 +2,7 @@
 
 > DispatcherServlet의 내부 구현에 대해 정리한 글입니다.
 
-## DispatcherServlet?
+## ？ DispatcherServlet이란
 
 DispatcherServlet은 스프링 MVC 구성의 핵심이다. 아래와 같은 역할을 한다.
 
@@ -15,7 +15,7 @@ DispatcherServlet은 스프링 MVC 구성의 핵심이다. 아래와 같은 역�
 
 
 
-## DispatcherServlet 구조
+## 🌲 DispatcherServlet 구조
 
 <figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
@@ -434,7 +434,7 @@ ArgumentResolve를 처리하고 실제 요청을 Controller로 전송하게 된�
 
 
 
-## DispatcherServlet과 HTTP 요청 처리 과정
+## 🚚 DispatcherServlet과 HTTP 요청 처리 과정
 
 요청 처리의 흐름을 도식화해서 순서대로 살펴보고 마무리하겠다.
 
