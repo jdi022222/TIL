@@ -4,7 +4,7 @@
 
 ## ✅ 개발 완료 모습
 
-<figure><img src="../../.gitbook/assets/멈무일기 stream (1).gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/멈무일기 stream (1).gif" alt="" width="327"><figcaption></figcaption></figure>
 
 
 
@@ -60,29 +60,39 @@ ChatGPT를 통해 결과 생성 요청을 10개정도 연속으로 보내 보았
 
 
 
-로그를 확인해보니 커넥션풀이 터지는 문제가 발생했다.
+로그를 확인해보니 DB 커넥션이 부족해 커넥션 풀이 터지는 문제가 발생했다.
 
 <figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
-Jmeter를 통해 부하테스트를 진행해봤다.&#x20;
+해당 API는 chatGPT를 호출해 응답을 받아오는 API다.
 
-다른 API 요청은 여러건 보내면 정상처리 됐으나 외부 API를 호출하는 요청만 문제가 발생하는 것을 확인했다.
-
-
-
-찾아보니 `OSIV(Open-Session-In-View)` 문제였다.
-
-**SSE 통신이 진행되는 동안에는 클라이언트와 서버가 계속해서 HTTP 연결이 맺어져있는 상태여야 한다**. 현재 프로젝트에서 JPA를 이용했고 **HTTP 연결이 유지되는 동안 영속성 컨텍스트도 유지되게 된다**. API를 호출하는 비즈니스 코드의 트랜잭션이 시작되면 영속성 컨텍스트가 DB 커넥션과 함께 생성되는데, `OSIV`가 true로 설정되어 있을 경우 SSE가 진행되는 동안 커넥션도 동시간 점유하게 된다.
+요청시간은 서버 환경과 응답 토큰 수에 따라 5초 \~ 30초정도의 응답시간을 가진다.
 
 
 
-사실... `OSIV`의 존재는 알고 있었지만 기본값이 true인 것은 몰랐다. false로 변경해서 테스트를 진행해보니 커넥션도 바로 반납되어 커넥션 풀도 터지지 않았다.
+Ngrinder를 통해 해당 API에 부하테스트를 진행해봤다.&#x20;
+
+다른 API 요청은 여러건 보내면 정상처리 됐으나 해당 API를 호출하는 요청만 약 10건 이상 보낼 시 문제가 발생하는 것을 확인했다.
 
 
 
-> 결론 : SSE를 사용할 경우 OSIV 옵션은 false로 하자.
+단지 SSE + Stream을 적용했을 뿐인데 갑자기 DB 커넥션이 부족하다? 인과 관계가 맞지 않는 듯했다.
+
+DB Connection과 길어진 요청 시간의 인과관계에 대해 찾아보니 **`OSIV(Open-Session-In-View)`** 문제인 듯 했다.
+
+
+
+**SSE 통신이 진행되는 동안에는 클라이언트와 서버가 계속해서 HTTP 연결이 맺어져있는 상태여야 한다**. 현재 프로젝트에서 JPA를 이용했고 **HTTP 연결이 유지되는 동안 영속성 컨텍스트도 유지되게 된다**. API를 호출하는 비즈니스 코드의 트랜잭션이 시작되면 영속성 컨텍스트가 DB 커넥션과 함께 생성되는데, **`OSIV`**가 true로 설정되어 있을 경우 SSE가 진행되는 동안 커넥션도 동시간 점유하게 된다.
+
+
+
+사실... **`OSIV`**의 존재는 알고 있었지만 기본값이 true인 것은 몰랐다. false로 변경해서 테스트를 진행해보니 커넥션도 바로 반납되어 커넥션 풀도 터지지 않았다.
+
+
+
+> 결론 : **SSE**를 사용할 경우 **OSIV** 옵션은 **false**로 하자.
 
 
 
@@ -104,9 +114,11 @@ server의 로그를 확인해 봤을 때는 한 글자씩 끊어서 보냈으나
 
 Docker container로 배포되어 있는 Spring이 Nginx를 거쳐 외부로 응답을 보내는 구조다.
 
-배포 환경을 생각해보니 Nginx의 문제인 것 같아서 default 설정을 찾아봤다.
+분명 로그를 확인해봤을 때 Spring에서 Nginx로 가는 요청은 Stream이 잘 적용됐다.
 
 
+
+다만 Nginx에서 클라이언트로 응답을 보낼 때 Stream이 적용이 잘 안되는 상황을 고려해봤을 때 Nginx의 문제인 것 같아서 Nginx.conf의 default 설정을 찾아봤다.
 
 [https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
 
@@ -125,7 +137,7 @@ Nginx의 버퍼링은 성능을 최적화하는 데 도움이 되기 때문에 �
 
 
 
-# 특정 URL에 대한 설정
+# 특정 URL에 대해 buffer OFF
 if ($request_uri = '/api/v1/gpt-stream') {
     proxy_buffering off;
 }
@@ -133,7 +145,8 @@ if ($request_uri = '/api/v1/gpt-stream') {
 
 
 
-> 결론 : Stream 방식을 이용할 경우 Nginx의 버퍼 설정을 확인하자.
+단, 위와 같은 방식은 API가 하드코딩되어 있기 때문에 더 깔끔한 방법이 있는지 찾아봐야겠다.
 
 
 
+> 결론 : Stream 방식을 이용할 경우 Nginx의 버퍼 설정을 주의하자.

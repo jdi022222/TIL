@@ -6,15 +6,15 @@
 
 **캐시란?**
 
-데이터를 원하는 클라이언트 <-> 실제 데이터 저장소 사이에서 실제 데이터를 미리 복사해두어 조회 속도를 올려주는 임시 저장소 이다.
+데이터를 원하는 클라이언트 <-> 실제 데이터 저장소 사이에서 실제 데이터를 미리 복사해두어 조회 속도를 올려주는 임시 저장소이다.
 
 
 
-클라이언트가 데이터 조회시 캐시 저장소를 우선적으로 조회하는데 캐시가 존재하면 **`캐시히트`,** 존재하지 않는다면 **`캐시미스`**라고 하며 캐시 미스가 발생 시 실제 데이터 저장소를 조회하게 된다.
+클라이언트가 데이터 조회시 캐시 저장소를 우선적으로 조회하는데 캐시가 존재하면 **`캐시히트`,** 존재하지 않는다면 **`캐시미스`**라고 하며 **`캐시미스`**가 발생 시 실제 데이터 저장소를 조회하게 된다.
 
 
 
-캐시 미스가 자주 발생하면 데이터를 실제 데이터 저장소에서 가져오는데 필요한 시간이 추가되기 때문에 성능 저하가 발생하기 때문에 캐시를 적용할 데이터를 신중히 결정해야 한다.
+**`캐시미스`**가 자주 발생하면 데이터를 실제 데이터 저장소에서 가져오는데 필요한 시간이 추가되기 때문에 성능 저하가 발생한다. 따라서 캐시를 적용할 데이터를 신중히 결정해야 한다.
 
 
 
@@ -25,7 +25,7 @@
 
 
 
-Spring Boot는 **`Spring-Boot-Starter-Cache`** 의존성을 통해 간편하게 캐시를 적용할 수 있다. 여기에 추가 기능을 제공하는 **`Ehcache`**나 **`Caffeine`**을 추가하여 자주 사용한다. 아래와 같은 이유로 둘 중에  Caffeine 캐시를 적용했다!
+Spring Boot는 **`Spring-Boot-Starter-Cache`** 의존성을 통해 간편하게 **`로컬캐시`**를 적용할 수 있다. 여기에 추가 기능을 제공하는 **`Ehcache`**나 **`Caffeine`**을 추가하여 자주 사용한다. 아래와 같은 이유로 둘 중에  Caffeine 캐시를 적용했다!
 
 
 
@@ -38,7 +38,7 @@ Spring Boot는 **`Spring-Boot-Starter-Cache`** 의존성을 통해 간편하게 
   * spring-boot-starter-cache의 기본 구현체와 동일하게 concurrentHashMap을 이용하지만 caffeine은 추가적인 최적화가 보다 간편하게 가능 (크기 제한, 만료 정책 등)
   * 현직에서 사용되는 캐시에 대한 정책은 요구사항이 매우 복잡하며 기본 캐시를 이용한다면 복잡한 요구사항들을 직접 구현해야 함 (TTL, TTI, 페이지 교체 알고리즘 등)
 * Xml를 사용하는 Ehcache보다 Spring 친화적임
-* **`Window TinyLFU`**를 기본 알고리즘을 사용 중
+* 캐시 히트율이 높은 **`Window TinyLFU`**를 기본 알고리즘으로 사용
 * 단, 분산 환경에서는 사용 불가 (Ehcache는 가능)
 
 
@@ -51,7 +51,7 @@ Spring Boot는 **`Spring-Boot-Starter-Cache`** 의존성을 통해 간편하게 
 
 
 
-build.gradle 의존성 추가
+**build.gradle에 Cache 의존성 추가**
 
 ```java
 // cache
@@ -61,7 +61,7 @@ implementation 'com.github.ben-manes.caffeine:caffeine'
 
 
 
-CacheConfig 생성
+**CacheConfig 생성**
 
 * @EnableCaching을 통해  Cache 사용을 명시한다
 * Enum으로 등록한 CaffeineCache들을 리스트로 빈에 등록한다
@@ -93,7 +93,7 @@ public class CacheConfig {
 
 
 
-Cache Enum 생성
+**Cache Enum 생성**
 
 * 사용할 캐시들을 명시한다
 
@@ -132,7 +132,7 @@ public enum CacheType {
 
 
 
-캐시를 적용할 로직에 Cacheable 어노테이션 명시
+**캐시를 적용할 로직에 @Cacheable 어노테이션 명시**
 
 ```java
 @Override
@@ -254,10 +254,10 @@ public static void beforeProcess() {
 ### 4. 수치 변화
 
 * **`수치 변화`**
-  * 평균 TPS : { 2700 } → { 4800 } **약 2배 개선**
+  * 평균 TPS : { 2700 } → { 4800 } **약 1.8배 개선**
   * Peek TPS : { 3622 } → { 5419 }
   * Mean Test Time : { 3.48 } ms → { 2.00 } ms **약 1.5배 단축**
-  * Exected Tests : { 158600 } → { 278100 } **약 2배 실행**
+  * Exected Tests : { 158600 } → { 278100 } **약 1.8배 실행**
 * **`지표 변화`**
   * 요청이 더 많아져서 GC가 더 많이 발생
   * 그만큼 Heap 영역도 많이 사용
