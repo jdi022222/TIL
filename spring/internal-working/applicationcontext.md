@@ -27,7 +27,7 @@ Spring framework에서는 개발자가 직접 객체를 생성하지 않고 컨�
 
 ## 🌲 ApplicationContext 상속 구조
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext인터페이스의 구조</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext인터페이스의 구조</p></figcaption></figure>
 
 Spring에서 BeanFactory를 생성하기 위한 인터페이스들의 다이어그램이다.최상단에 BeanFactory가 있고 최하단에 `ApplicationContext`가 존재한다.
 
@@ -39,7 +39,7 @@ BeanFactory는 `getBean()`, `containsBean()`, `isSingleton()`과 같이 Bean에 
 
 BeanFactory는 Bean의 라이프사이클을 관리하는 기능만 있다면, ApplicationContext는 BeanFactory 기능과 함께 아래와 같은 추가적인 기능을 제공한다.&#x20;
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html">https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html</a></p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption><p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html">https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html</a></p></figcaption></figure>
 
 
 
@@ -57,7 +57,7 @@ BeanFactory는 Bean의 라이프사이클을 관리하는 기능만 있다면, A
 
 그럼, ApplicationContext의 구현체들을 살펴보자.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext의 다양한 구현체</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext의 다양한 구현체</p></figcaption></figure>
 
 다양하다. 실제로 사용해 본 구현체만 간단하게 설명하겠다.
 
@@ -65,7 +65,7 @@ BeanFactory는 Bean의 라이프사이클을 관리하는 기능만 있다면, A
 
 ### 1. WebApplicationContext
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 WebApplication은 구현체는 아니고 인터페이스이다. 이름 그대로 웹 환경에서 사용할 때 필요한 기능이 추가된 인터페이스이다.
 
@@ -73,7 +73,7 @@ WebApplication은 구현체는 아니고 인터페이스이다. 이름 그대로
 
 ### 2. AnnotationConfigWebApplicationContext&#x20;
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption><p>너무 복잡해서 가지치기를 했다</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption><p>너무 복잡해서 가지치기를 했다</p></figcaption></figure>
 
 Annotation 설정을 기반으로 빈을 등록하는 WebApplication의 구현체이다.
 
@@ -81,7 +81,7 @@ Annotation 설정을 기반으로 빈을 등록하는 WebApplication의 구현�
 
 ### 3. XmlWebApplicationContext
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption><p>너무 복잡해서 가지치기를 했다</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption><p>너무 복잡해서 가지치기를 했다</p></figcaption></figure>
 
 Web.xml의 설정을 기반으로 빈을 등록하는 WebApplication의 구현체이다.
 
@@ -153,11 +153,11 @@ ClassLoader를 통해 클래스 목록을 확인하여 해당 애플리케이션
 
 웹 애플리케이션에서 사용되는 ApplicationContext를 상속한 인터페이스인 `WebApplicationContext`가 `DispatcherServlet`과 함께 사용된다.
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption><p>DispatcherServlet이 생성될 때 WebApplicationContext를 파라미터로 받는 생성자</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption><p>DispatcherServlet이 생성될 때 WebApplicationContext를 파라미터로 받는 생성자</p></figcaption></figure>
 
 
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>WebApplicationContext는 ApplicationContext를 상속받은 인터페이스 중 하나이다.</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption><p>WebApplicationContext는 ApplicationContext를 상속받은 인터페이스 중 하나이다.</p></figcaption></figure>
 
 
 
@@ -168,6 +168,10 @@ DispatcherServlet은 Spring MVC가 웹 요청을 처리할 때 사용되는 핵�
 ## 🚀 실습 - 컨테이너가 관리하는 모든 Bean 조회
 
 참고 : [https://www.youtube.com/watch?v=qEzRBmw6YlI](https://www.youtube.com/watch?v=qEzRBmw6YlI)
+
+
+
+유튜브를 검색하다 actuator로 bean 목록과 의존 관계, 스코프를 확인하는 방법을 찾아서 확인해봤다.
 
 
 
@@ -197,19 +201,19 @@ management:
 
 3. 애플리케이션 구동 후 {project URL}/actuator/beans로 접속한다.
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 JSON Viewer를 설치하면 아래처럼 정렬된 상태로 볼 수 있다.
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 프로덕트 코드에서 등록된 authController라는 Bean이 등록된 것을 확인할 수 있다. 추가적으로 singleton으로 관리되며 해당 Bean과 의존성을 가지는 Bean도 확인할 수 있다.
 
 
 
-<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 실제 authController 코드는 위와 같다. 생성자를 통한 의존성 주입만 명시되어 있다. 컨테이너가 해당 Controller Component를 개발자 대신 싱글톤 빈으로 등록해준다. 추가적으로 authService는 Interface인데 해당 인터페이스의 구현체인 authServiceImpl도 찾아서 주입해주는 것을 확인할 수 있다.
 

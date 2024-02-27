@@ -4,12 +4,16 @@
 
 ## ？ DispatcherServlet이란
 
-DispatcherServlet은 스프링 MVC 구성의 핵심이다. 아래와 같은 역할을 한다.
+&#x20;**`DispatcherServlet`**은 스프링 MVC 구성의 핵심이다. 아래와 같은 역할을 한다.
 
-1. DispatcherServlet은 외부 클라이언트로 부터 오는 HTTP 요청을 받아서 적절한 Controller로 위임하는 프론트 컨트롤러 역할을 한다. 개발자가 직접 HTTP 요청을 분석해 적절한 Controller로 위임하는 수고를 줄여준다.
+1. **`DispatcherServlet`**은 외부 클라이언트로 부터 오는 HTTP 요청을 받아서 적절한 Controller로 위임하는 프론트 컨트롤러 역할을 한다. 개발자가 직접 HTTP 요청을 분석해 적절한 Controller로 위임하는 수고를 줄여준다.
 2. 들어오는 모든 요청을 처리하기 때문에 인터셉터나 ArgumentResolver 같은 공통 처리를 간편하게 사용할 수 있게 도와준다.
 
-위처럼 DispatcherServlet을 사용하게 되면서 개발자는 HTTP 분석 등 귀찮은 작업을 하지 않아도 되며 비즈니스 로직에 집중할 수 있게 된다.
+위처럼 **`DispatcherServlet`**을 사용하게 되면서 개발자는 HTTP 분석 등 귀찮은 작업을 하지 않아도 되며 비즈니스 로직에 집중할 수 있게 된다.
+
+
+
+**DispatcherServlet**이 어떤 구조로 이루어져 있는지, 어떤 기능을 어떤 순서로 제공하는지 코드를 통해 살펴보았다.
 
 
 
@@ -21,31 +25,39 @@ DispatcherServlet은 스프링 MVC 구성의 핵심이다. 아래와 같은 역�
 
 Servlet부터 DispatcherServlet까지의 내부 구조와 흐름에 대해 정리해보았다.
 
-
-
 ### 1. Servlet
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 참고 : [https://www.baeldung.com/intro-to-servlets](https://www.baeldung.com/intro-to-servlets)
 
 * 웹페이지를 동적으로 생성하며  외부 요청을 처리하고 응답하기 위한 인터페이스
 * 서블릿 덕분에 HTTP 요청 뿐만 아니라 다양한 유형의 요청을 동적으로 처리하여 응답 가능
-* 해당 인터페이스에는 init(), service(), destroy()와 같이 서블릿의 생명주기 및 처리에 대한 추상 메서드가 정의되어 있다.
-* 서블릿의 생명주기는 `init() → service() → destroy()`이다.
+* 해당 인터페이스에는 `init()`, `service()`, `destroy()`와 같이 서블릿의 생명주기 및 처리에 대한 추상 메서드가 정의되어 있다.
+* 따라서 서블릿의 **생명주기**는 `init() → service() → destroy()`임을 알 수 있다.
 
 
 
 ### 2. HttpServlet
 
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+**`HttpServlet`**은 **`Servlet`**을 상속한 추상 클래스인 **`GenericServlet`**을 상속한 추상 클래스이다.
+
 <figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
-* HTTP 요청을 처리할 수 있는 서블릿에 대한 추상클래스
+
+
+Servlet이 HTTP 요청에 맞게 생명주기를 갖도록 아래와 같이 구현을 했다.
+
+* HTTP 요청을 처리할 수 있는 서블릿에 대한 추상클래스이다.
 * PATCH를 제외한 HTTP Method에 대한 처리가 존재한다.
 
 
 
-Servlet 요청을 HTTP 요청으로 변환하는 과정이 service 메서드에 존재한다.
+HttpServlet에는 Servlet 요청을 HTTP 요청으로 변환하는 과정이 Servlet의 두 번째 생명주기였던 **`service`** 메서드에 존재한다.
 
-1. Service 메서드를 통해 **Servlet** 요청과 응답을 **HttpServlet** 요청과 응답으로 변환한다.
+1. **`Service`** 메서드를 통해 **`Servlet`** 요청과 응답을 **`HttpServlet`** 요청과 응답으로 변환한다.
 
 ```java
 @Override
@@ -66,7 +78,7 @@ public void service(ServletRequest req, ServletResponse res) throws ServletExcep
 
 
 
-2. 변환된 HttpServlet 요청과 응답의 HTTP Method에 맞게 처리를 위한 메서드를 호출한다. (doGet, doPost ...)
+2. 변환된 **`HttpServlet`** 요청과 응답의 HTTP Method에 맞게 처리를 위한 메서드를 호출한다. (doGet, doPost ...)
 
 ```java
 protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -110,7 +122,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 
 
 
-3. 단, HttpServlet에서의 doGet, doPost와 같은 HTTP Method별 처리 메서드는 모두 에러를 반환하는 `sendMethodNotAllowed`를 호출한다. 따라서 구현체를 통해 해당 처리 메서드를 재정의를 해야 적절한 처리가 가능하다. -> `FrameworkServlet` 에 구현되어 있다.
+3. 단, **`HttpServlet`**에서의 doGet, doPost와 같은 HTTP Method별 처리 메서드는 모두 에러를 반환하는 **`sendMethodNotAllowed`**를 호출한다. 따라서 구현체를 통해 해당 처리 메서드를 재정의를 해야 적절한 처리가 가능하다. -> **`FrameworkServlet`** 에 구현되어 있다.
 
 <figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
@@ -120,7 +132,9 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 
 ### 3. HttpServletBean
 
-* Spring에서 HttpServlet에 대한 구현을 한 추상클래스이다.
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+* **Spring**에서 **`HttpServlet`**에 대한 구현을 한 추상클래스이다.
 *   이 구현체부터는 Spring 프레임워크의 기술이다.
 
     ```
@@ -132,12 +146,14 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 
 ### 4. FrameworkServlet
 
-* HttpServlet의 doGet, doPost 등에 대한 처리가 구현되어 있다.
-* HttpServlet은 doGet, doPost 등에 대한 구현 책임을 자식 객체로 위임했기 때문에 해당 HTTP Method를 지원하기 위해서 오버라이드를 통해 기능이 구현 되어있다.
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+* **`HttpServlet`**의 doGet, doPost 등에 대한 처리가 구현되어 있다.
+* **`HttpServlet`**은 doGet, doPost 등에 대한 구현 책임을 자식 객체로 위임했기 때문에 해당 HTTP Method를 지원하기 위해서 오버라이드를 통해 기능이 구현 되어있다.
 
 
 
-service 메서드를 살펴보면 `HTTP_SERVLET_METHODS`에 포함될 경우 super를 통해 HttpServlet으로 요청을 위임한다.
+service 메서드를 살펴보면 **`HTTP_SERVLET_METHODS`**에 포함될 경우 super를 통해 **`HttpServlet`**으로 요청을 위임한다.
 
 ```java
 @Override
@@ -153,7 +169,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 
 
 
-FrameworkServlet의 `HTTP_SERVLET_METHODS`라는 상수값을 보면 `PATCH`만 제외되어 있다.
+FrameworkServlet의 **`HTTP_SERVLET_METHODS`**라는 상수값을 보면 **`PATCH`**만 제외되어 있다.
 
 ```java
 private static final Set<String> HTTP_SERVLET_METHODS = 
@@ -162,7 +178,7 @@ Set.of("DELETE", "HEAD", "GET", "OPTIONS", "POST", "PUT", "TRACE");
 
 
 
-`PATCH` 요청은 나중에 지원돼서 그렇다 카더라
+**`PATCH`** 요청은 나중에 지원돼서 그렇다 카더라
 
 출처 : [https://en.wikipedia.org/wiki/PATCH\_(HTTP)#History\_of\_PATCH](https://en.wikipedia.org/wiki/PATCH\_\(HTTP\)#History\_of\_PATCH)
 
@@ -174,7 +190,7 @@ FrameworkServlet에는 doGet, doPost 등등에 대한 처리 방법이 구현되
 
 
 
-`processRequest`에는 `doService`를 호출한다. 하지만 doService는 추상 메서드 이므로 최종 구현체인 `DispatcherServlet`에서 실제 HTTP 요청에 대한 처리를 구현하게 된다.
+**`processRequest`**에는 **`doService`**를 호출한다. 하지만 doService는 추상 메서드 이므로 최종 구현체인 **`DispatcherServlet`**에서 실제 HTTP 요청에 대한 처리를 구현하게 된다.
 
 <figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
@@ -184,11 +200,15 @@ FrameworkServlet에는 doGet, doPost 등등에 대한 처리 방법이 구현되
 
 ### 5. DispatcherServlet
 
-FrameworkServlet에서 HTTP 요청에 대한 처리 구현을 doService라는 추상 메서드로 정의했기 때문에 구현체인 DispatcherServlet에서 오버라이드로 구현해야 한다.
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+**`FrameworkServlet`**에서 HTTP 요청에 대한 처리 구현을 doService라는 추상 메서드로 정의했기 때문에 구현체인 **`DispatcherServlet`**에서 오버라이드로 구현해야 한다.
 
 
 
-코드가 길기 때문에 중요한 내용만 축약하면 doService 내에서 doDispatch의 호출을 확인할 수 있다.
+#### 5.1 doService
+
+코드가 길기 때문에 중요한 내용만 축약하면 **`doService`** 내에서 **`doDispatch`**의 호출을 확인할 수 있다.
 
 ```java
 @Override
@@ -203,7 +223,9 @@ protected void doService(HttpServletRequest request, HttpServletResponse respons
 
 
 
-doDispatch는 아래와 같다. 전체 흐름을 주석으로 달아놨다.
+#### 5.2 doDispatch
+
+**`doDispatch`**는 아래와 같다. 전체 흐름을 주석으로 달아놨다.
 
 ```java
 protected void doDispatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -301,7 +323,7 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 
 
 
-doDispatch에서 실행되는 순서는 다음과 같다.
+**`doDispatch`**에서 실행되는 순서는 다음과 같다.
 
 1. HandlerMapping을 통해 Handler 조회
 2. 조회한 Handler를 처리할 HandlerAdapter 조회
@@ -357,6 +379,8 @@ protected void doDispatch(HttpServletRequest request, HttpServletResponse respon
 ```
 
 
+
+#### 5.3 doDispatch 내부 동작 과정
 
 #### 1. HandlerMapping을 통해 Handler 조회
 
@@ -445,18 +469,3 @@ ArgumentResolve를 처리하고 실제 요청을 Controller로 전송하게 된�
 3. HandlerMapping에서 요청을 처리할 Handler(Controller) 조회
 4. Handler를 처리할 Handler Adapter로 요청 (실제로는 요청을 보내기 전 Interceptor의 Prehandle이 적용)
 5. Controller에서 비즈니스 요청 처리를 한 후 Model And View 반환
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

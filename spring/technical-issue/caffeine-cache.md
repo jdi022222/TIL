@@ -2,7 +2,7 @@
 
 > Spring Boot 프로젝트에 Caffeine Cache를 적용해보는 글입니다.
 
-## ？ Cache란
+## 📚 Cache란
 
 **캐시란?**
 
@@ -160,9 +160,7 @@ public NoticeResponses findNotices() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -171,13 +169,13 @@ public NoticeResponses findNotices() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### 3. Scouter로 모니터링
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 빨간 색이 캐시 적용 후, 파란 색이 캐시 적용 전이다.
 
@@ -221,14 +219,12 @@ public static void beforeProcess() {
 
 
 
-
-
 ### 1. 캐시 적용 전 부하테스트
 
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -237,13 +233,13 @@ public static void beforeProcess() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### 3. Scouter로 모니터링
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 이번엔 왼쪽이 캐시 적용 전, 오른쪽이 캐시 적용 후 이다.
 
@@ -261,10 +257,6 @@ public static void beforeProcess() {
 * **`지표 변화`**
   * 요청이 더 많아져서 GC가 더 많이 발생
   * 그만큼 Heap 영역도 많이 사용
-
-
-
-
 
 
 

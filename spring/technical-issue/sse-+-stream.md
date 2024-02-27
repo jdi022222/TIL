@@ -40,13 +40,13 @@ SSE로 정했으니 바로 개발에 들어갔다.
 
 우선 외부 API를 Stream 방식으로 받아와야 한다. 다행히도 chatGPT는 stream옵션을 이용하면 간편하게 stream 형식으로 받아올 수 있었다.
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 그리고 Webflux의 Flux를 이용해 Stream을 처리했다.  Stream으로 여러 데이터를 emit해야하기 때문에 Mono가 아닌 Flux 타입으로 반환을 했다.
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 개발 후 로컬에서 테스트는 잘 동작했으나 배포환경에서는 몇가지 문제가 발생했다.
 
@@ -62,7 +62,7 @@ ChatGPT를 통해 결과 생성 요청을 10개정도 연속으로 보내 보았
 
 로그를 확인해보니 DB 커넥션이 부족해 커넥션 풀이 터지는 문제가 발생했다.
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -74,7 +74,7 @@ ChatGPT를 통해 결과 생성 요청을 10개정도 연속으로 보내 보았
 
 Ngrinder를 통해 해당 API에 부하테스트를 진행해봤다.&#x20;
 
-다른 API 요청은 여러건 보내면 정상처리 됐으나 해당 API를 호출하는 요청만 약 10건 이상 보낼 시 문제가 발생하는 것을 확인했다.
+다른 API 요청은 여러건 보내면 정상처리 됐으나 해당 API를 호출하는 요청을 10건 이상 보낼 시 문제가 발생하는 것을 확인했다.
 
 
 
@@ -84,7 +84,9 @@ DB Connection과 길어진 요청 시간의 인과관계에 대해 찾아보니 
 
 
 
-**SSE 통신이 진행되는 동안에는 클라이언트와 서버가 계속해서 HTTP 연결이 맺어져있는 상태여야 한다**. 현재 프로젝트에서 JPA를 이용했고 **HTTP 연결이 유지되는 동안 영속성 컨텍스트도 유지되게 된다**. API를 호출하는 비즈니스 코드의 트랜잭션이 시작되면 영속성 컨텍스트가 DB 커넥션과 함께 생성되는데, **`OSIV`**가 true로 설정되어 있을 경우 SSE가 진행되는 동안 커넥션도 동시간 점유하게 된다.
+**SSE 통신이 진행되는 동안에는 클라이언트와 서버가 계속해서 HTTP 연결이 맺어져있는 상태여야 한다**.&#x20;
+
+현재 프로젝트에서 JPA를 이용했고 **HTTP 연결이 유지되는 동안 영속성 컨텍스트도 유지되게 된다**. API를 호출하는 비즈니스 코드의 트랜잭션이 시작되면 영속성 컨텍스트가 DB 커넥션과 함께 생성되는데, **`OSIV`**가 true로 설정되어 있을 경우 SSE가 진행되는 동안 커넥션도 동시간 점유하게 된다.
 
 
 
@@ -118,7 +120,7 @@ Docker container로 배포되어 있는 Spring이 Nginx를 거쳐 외부로 응�
 
 
 
-다만 Nginx에서 클라이언트로 응답을 보낼 때 Stream이 적용이 잘 안되는 상황을 고려해봤을 때 Nginx의 문제인 것 같아서 Nginx.conf의 default 설정을 찾아봤다.
+다만, Nginx에서 클라이언트로 응답을 보낼 때 Stream이 적용이 잘 안되는 상황을 고려해봤을 때 Nginx의 문제인 것 같아서 Nginx.conf의 default 설정을 찾아봤다.
 
 [https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
 
