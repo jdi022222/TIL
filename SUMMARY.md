@@ -13,6 +13,7 @@
 * [Technical Issue](spring/technical-issue/README.md)
   * [SSE + Stream 방식 문제점](spring/technical-issue/sse-+-stream.md)
   * [Caffeine Cache 적용기](spring/technical-issue/caffeine-cache.md)
+  * [Infra](spring/technical-issue/infra.md)
 
 ## 💻 CS
 
