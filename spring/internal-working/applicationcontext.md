@@ -27,7 +27,7 @@ Spring framework에서는 개발자가 직접 객체를 생성하지 않고 컨�
 
 ## 🌲 ApplicationContext 상속 구조
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext인터페이스의 구조</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext인터페이스의 구조</p></figcaption></figure>
 
 Spring에서 BeanFactory를 생성하기 위한 인터페이스들의 다이어그램이다.최상단에 BeanFactory가 있고 최하단에 `ApplicationContext`가 존재한다.
 
@@ -57,7 +57,7 @@ BeanFactory는 Bean의 라이프사이클을 관리하는 기능만 있다면, A
 
 그럼, ApplicationContext의 구현체들을 살펴보자.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext의 다양한 구현체</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>ApplicationContext의 다양한 구현체</p></figcaption></figure>
 
 다양하다. 실제로 사용해 본 구현체만 간단하게 설명하겠다.
 

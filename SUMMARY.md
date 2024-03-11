@@ -10,10 +10,10 @@
   * [DispatcherServlet](spring/internal-working/dispatcherservlet.md)
   * [AOP, Transaction](spring/internal-working/aop-transaction.md)
   * [ApplicationEventPublisher](spring/internal-working/applicationeventpublisher.md)
-* [Technical Issue](spring/technical-issue/README.md)
-  * [SSE + Stream 방식 문제점](spring/technical-issue/sse-+-stream.md)
-  * [Caffeine Cache 적용기](spring/technical-issue/caffeine-cache.md)
-  * [Infra](spring/technical-issue/infra.md)
+* [Technical Story](spring/technical-story/README.md)
+  * [SSE + Stream 방식 문제점](spring/technical-story/sse-+-stream.md)
+  * [Caffeine Cache 적용기](spring/technical-story/caffeine-cache.md)
+  * [배포용 서버 선택 과정](spring/technical-story/undefined.md)
 
 ## 💻 CS
 
