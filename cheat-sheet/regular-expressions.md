@@ -1,5 +1,9 @@
 # Regular Expressions
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+##
+
 ## 🔍 정규식(Regular expressions)
 
 **특정 검색 패턴**(ASCII 또는 유니코드 문자의 시퀀스)에 대한 하나 이상의 일치 항목을 검색하여 **텍스트에서 정보를 추출**하는데 유용한 기술

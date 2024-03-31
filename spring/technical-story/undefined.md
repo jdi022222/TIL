@@ -195,7 +195,7 @@ AWS는 레퍼런스도 충분하고, managed service이기 때문에 많은 기�
 
 서버를 구축하기 위해 리눅스 배포판 중 **Ubuntu**를 선택했다.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 * Desktop
 * Server
