@@ -153,7 +153,7 @@ Spring Boot의 Auto Configure 설정 중 **`AopAutoConfiguration`**에는 두 �
 
 ### 1. 상속구조
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Proxy를 생성하는데 필요한 설정값을 가진 superclass인 **ProxyConfig**
 * AOP에 대한 설정 정보를 담고 있는 **Advised interface**

@@ -2,23 +2,24 @@
 
 * [Intro](README.md)
 
-## 🌱 Spring
+## 🌱 WEB
 
-* [Internal Working](spring/internal-working/README.md)
-  * [@SpringBootApplication](spring/internal-working/01\_-springbootapplication\_auto\_configure\_.md)
-  * [ApplicationContext](spring/internal-working/applicationcontext.md)
-  * [DispatcherServlet](spring/internal-working/dispatcherservlet.md)
-  * [AOP, Transaction](spring/internal-working/aop-transaction.md)
-  * [ApplicationEventPublisher](spring/internal-working/applicationeventpublisher.md)
-* [Technical Story](spring/technical-story/README.md)
-  * [SSE + Stream 방식 문제점](spring/technical-story/sse-+-stream.md)
-  * [Caffeine Cache 적용기](spring/technical-story/caffeine-cache.md)
-  * [배포용 서버 선택 과정](spring/technical-story/undefined.md)
+* [Internal Working](web/internal-working/README.md)
+  * [@SpringBootApplication](web/internal-working/01\_-springbootapplication\_auto\_configure\_.md)
+  * [ApplicationContext](web/internal-working/applicationcontext.md)
+  * [DispatcherServlet](web/internal-working/dispatcherservlet.md)
+  * [AOP, Transaction](web/internal-working/aop-transaction.md)
+  * [ApplicationEventPublisher](web/internal-working/applicationeventpublisher.md)
+* [Technical Story](web/technical-story/README.md)
+  * [SSE + Stream 방식 문제점](web/technical-story/sse-+-stream.md)
+  * [Caffeine Cache 적용기](web/technical-story/caffeine-cache.md)
+  * [배포용 서버 선택 과정](web/technical-story/undefined.md)
 
 ## 💻 CS
 
 * [OS](cs/os/README.md)
   * [정리](CS/OS/00\_정리.md)
+* [JAVA Thread](cs/java-thread.md)
 
 ## 📚 Book
 
