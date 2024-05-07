@@ -119,7 +119,7 @@ Spring Boot의 Auto Configure 설정 중 **`AopAutoConfiguration`**에는 두 �
 
 **`AutoConfiguration`**에 대한 내용은 \[[링크](01\_-springbootapplication\_auto\_configure\_.md)]를 참고하면 된다.
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 1. AspectJAutoProxyConfiguration
 
@@ -153,7 +153,7 @@ Spring Boot의 Auto Configure 설정 중 **`AopAutoConfiguration`**에는 두 �
 
 ### 1. 상속구조
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Proxy를 생성하는데 필요한 설정값을 가진 superclass인 **ProxyConfig**
 * AOP에 대한 설정 정보를 담고 있는 **Advised interface**
@@ -174,7 +174,7 @@ ProxyFactory에서 위에 대한 것과 Proxy의 생명주기 관리에 대해 �
 
 스프링이 제공하는 빈 후처리기의 구현체 중 하나인 **`DefaultAdvisorAutoProxyCreator`**같은 경우 어드바이저를 통해 자동으로 프록시를 생성하는 후처리기이다.
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 자동 프록시 생성 빈 후처리기는 Bean의 일부를 프록시를 통해 포장하고, 프록시를 대신 Bean으로 등록하는 역할을 한다.
 

@@ -27,7 +27,7 @@ Servlet부터 DispatcherServlet까지의 내부 구조와 흐름에 대해 정�
 
 ### 1. Servlet
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 참고 : [https://www.baeldung.com/intro-to-servlets](https://www.baeldung.com/intro-to-servlets)
 
@@ -40,7 +40,7 @@ Servlet부터 DispatcherServlet까지의 내부 구조와 흐름에 대해 정�
 
 ### 2. HttpServlet
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 **`HttpServlet`**은 **`Servlet`**을 상속한 추상 클래스인 **`GenericServlet`**을 상속한 추상 클래스이다.
 
@@ -132,7 +132,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 
 ### 3. HttpServletBean
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **Spring**에서 **`HttpServlet`**에 대한 구현을 한 추상클래스이다.
 *   이 구현체부터는 Spring 프레임워크의 기술이다.
@@ -146,7 +146,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 
 ### 4. FrameworkServlet
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * **`HttpServlet`**의 doGet, doPost 등에 대한 처리가 구현되어 있다.
 * **`HttpServlet`**은 doGet, doPost 등에 대한 구현 책임을 자식 객체로 위임했기 때문에 해당 HTTP Method를 지원하기 위해서 오버라이드를 통해 기능이 구현 되어있다.
@@ -200,7 +200,7 @@ FrameworkServlet에는 doGet, doPost 등등에 대한 처리 방법이 구현되
 
 ### 5. DispatcherServlet
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **`FrameworkServlet`**에서 HTTP 요청에 대한 처리 구현을 doService라는 추상 메서드로 정의했기 때문에 구현체인 **`DispatcherServlet`**에서 오버라이드로 구현해야 한다.
 

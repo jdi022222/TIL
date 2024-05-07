@@ -1,6 +1,6 @@
 # Intro
 
-<figure><img src=".gitbook/assets/image (5).png" alt="" width="375"><figcaption><p>코코</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (5) (1).png" alt="" width="375"><figcaption><p>코코</p></figcaption></figure>
 
 
 

@@ -19,7 +19,7 @@
 
 * [OS](cs/os/README.md)
   * [정리](CS/OS/00\_정리.md)
-* [JAVA Thread](cs/java-thread.md)
+* [동기화, 상호 배제, 모니터](cs/undefined.md)
 
 ## 📚 Book
 

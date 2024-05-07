@@ -169,13 +169,13 @@ public NoticeResponses findNotices() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### 3. Scouter로 모니터링
 
-<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 빨간 색이 캐시 적용 후, 파란 색이 캐시 적용 전이다.
 
@@ -224,7 +224,7 @@ public static void beforeProcess() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -233,13 +233,13 @@ public static void beforeProcess() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### 3. Scouter로 모니터링
 
-<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 이번엔 왼쪽이 캐시 적용 전, 오른쪽이 캐시 적용 후 이다.
 
