@@ -119,7 +119,7 @@ Spring Boot의 Auto Configure 설정 중 **`AopAutoConfiguration`**에는 두 �
 
 **`AutoConfiguration`**에 대한 내용은 \[[링크](01\_-springbootapplication\_auto\_configure\_.md)]를 참고하면 된다.
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 1. AspectJAutoProxyConfiguration
 
@@ -153,7 +153,7 @@ Spring Boot의 Auto Configure 설정 중 **`AopAutoConfiguration`**에는 두 �
 
 ### 1. 상속구조
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Proxy를 생성하는데 필요한 설정값을 가진 superclass인 **ProxyConfig**
 * AOP에 대한 설정 정보를 담고 있는 **Advised interface**

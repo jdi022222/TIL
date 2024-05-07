@@ -46,7 +46,7 @@ SSE로 정했으니 바로 개발에 들어갔다.
 
 그리고 Webflux의 Flux를 이용해 Stream을 처리했다.  Stream으로 여러 데이터를 emit해야하기 때문에 Mono가 아닌 Flux 타입으로 반환을 했다.
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 개발 후 로컬에서 테스트는 잘 동작했으나 배포환경에서는 몇가지 문제가 발생했다.
 
@@ -62,7 +62,7 @@ ChatGPT를 통해 결과 생성 요청을 10개정도 연속으로 보내 보았
 
 로그를 확인해보니 DB 커넥션이 부족해 커넥션 풀이 터지는 문제가 발생했다.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

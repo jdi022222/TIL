@@ -169,7 +169,7 @@ public NoticeResponses findNotices() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -224,7 +224,7 @@ public static void beforeProcess() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -233,7 +233,7 @@ public static void beforeProcess() {
 * Vuser(가상 사용자) : 10
 * Duration : 1분
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
